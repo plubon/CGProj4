@@ -128,6 +128,8 @@ class MainWindow(Tk.Tk):
         while not q.empty():
             px = q.get(block=False)
             visited.add(px)
+            if px[0] < 0 or px[1] < 0 or px[0] >= self.img.width() or px[1] >= self.img.height():
+                continue
             if self.colorDist(self.raster[px[0], px[1]], color) < 25:
                 self.raster[px[0], px[1]] = self.color
                 ns = self.getNs(px)
